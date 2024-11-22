@@ -1,14 +1,3 @@
-'''
-INSTRUCTIONS
--------------
-1. Choose 1 to 5 people to collect their images, try to collect 40 per person : 30 images for the train set and 10 for the test set.
-2. Store the collected images following a predefined structure given by the instructor
-3. Extract faces from the collected images and assign them to the appropriate labels. Exciting face detection models are available to use such as the HAAR cascade model.
-4. Run through the commands below
-5. Execute the previous routine on the train set as well as on the test set
-6. Save the generated images for both sets into the same compressed ‘.npz’ file.
-'''
-
 import os
 import cv2
 import numpy as np
