@@ -45,7 +45,6 @@ def load_faces(dir_name, required_size=(160, 160)):
     faces = []
     for filename in os.listdir(dir_name):
         image_path = os.path.join(dir_name, filename)
-        print('THE IMAGE PATH', image_path, 'with fie name', filename)
         face = extract_face(image_path, required_size)
         if face is not None:
             faces.append(face)
