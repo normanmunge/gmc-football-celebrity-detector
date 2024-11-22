@@ -1,6 +1,7 @@
-from keras.applications import VGG16
-from keras.models import Model
-from keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.applications import VGG16
+from tensorflow.keras.models import Model
+from tensorflow.keras.applications.vgg16 import preprocess_input
+from tensorflow.keras.layers import Flatten
 import numpy as np
 
 """
@@ -15,11 +16,10 @@ def load_vgg16_embedding_model():
     
     # Add a custom output layer for embeddings
     x = base_model.output
-    x = keras.layers.Flatten()(x)  # Flatten the output into a vector
+    x = Flatten()(x)  # Flatten the output into a vector
     embedding_model = Model(inputs=base_model.input, outputs=x)
     
     return embedding_model
-
 
 """
 Calculate the embedding for a given face using the pre-trained VGG16 model.
@@ -29,7 +29,6 @@ Args:
 Returns:
     The embedding vector for the face.
 """
-
 # Get the embedding for a face image using VGG16
 def get_embedding_vgg16(model, face):
     # Preprocess the image for VGG16
@@ -42,6 +41,25 @@ def get_embedding_vgg16(model, face):
     # Get the embedding
     embedding = model.predict(face)
     return embedding[0]
+
+"""
+Process all face images to calculate their embeddings and save to an .npz file.
+Args:
+    model: The embedding model VGG16.
+    face_images: A numpy array of face images.
+    labels: A numpy array of labels corresponding to the images.
+    output_file: The name of the output .npz file to save the embeddings.
+"""
+# Function to process all faces and calculate embeddings
+def process_and_save_embeddings(model, face_images, labels, output_file):
+    embeddings = []
+    for face in face_images:
+        embedding = get_embedding_vgg16(model, face)
+        embeddings.append(embedding)
+    
+    embeddings = np.array(embeddings)
+    np.savez_compressed(output_file, embeddings=embeddings, labels=labels)
+    print(f"Embeddings saved to {output_file}")
 
 # Example usage
 if __name__ == "__main__":
