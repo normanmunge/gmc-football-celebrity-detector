@@ -21,7 +21,7 @@ The repository contains:
    - [haarcascade_frontalface_default.xml] - Viola Davis Algorithm to detect faces from an image/video.
 4. [Gitignore File](/.gitignore) - File to ignore files and directories from being pushed to the remote repository
 5. [README.md File](/README.md) - Guiding instructions for describing and running the project.
-6. [excel_links](excel_links) -  Directory where we save the image urls to scrapped off the internet for our football celebrities saved in Excel format.
+6. [excel_links](excel_links) - Directory where we save the image urls to scrapped off the internet for our football celebrities saved in Excel format.
 
 ## 2. Setting up your local environment
 
@@ -73,6 +73,9 @@ The important libraries used in this environment are:
 2. Numpy - Used for mathematical and statistical purposes often to prepare your dataset for machine learning
 3. OpenCV Python - Used to manipulate images in python
 4. Selenium - Used to test web browsers and scrap off information
+5. Keras
+6. Keras-facenet
+7. Tensorflow
 
 The above listed libraries are the core ones used in the repository. However, during installation you'll notice other dependencies installed that enable to work as expected. They are highlighted on the [requirement.txt](/requirements.txt) file.
 
