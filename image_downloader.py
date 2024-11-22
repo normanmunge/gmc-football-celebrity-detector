@@ -24,7 +24,7 @@ import os
 # Specify the path where you want to create the folders
 path = "dataset/images/"
 
-keywords = ["Steven Gerrard"]
+keywords = ["Steven Gerrard","Mo Salah","Christiano Ronaldo","Messi","Wayne Rooney"]
 
 # List of folder names you want to create
 folders = [name.lower().replace(" ", "_") for name in keywords]
