@@ -15,8 +15,8 @@ The repository contains:
 2. [Requirements.txt] (/requirements.txt) - Showing the necessary libraries and dependencies to run the notebook.
 3. Files
    - [app.py](app.py) - A python script that loads image from a dataset, extracts faces from them and saves into a .npz file
-   - [web-scraping-main.py](web-scraping-main.py) - A python script to scrap data off Google Images based on search query
-   - [image_downloader.py](image_downloader.py) - A python script to download images and save them into our dataset directory
+   - [web-scraping-main.py](image_extractor_scripts/web-scraping-main.py) - A python script to scrap data off Google Images based on search query
+   - [image_downloader.py](image_extractor_scripts/image_downloader.py) - A python script to download images and save them into our dataset directory
    - [faces_dataset.npz](faces_dataset.npz) - A .npz file that contains the extracted faces.
    - [haarcascade_frontalface_default.xml] - Viola Davis Algorithm to detect faces from an image/video.
 4. [Gitignore File](/.gitignore) - File to ignore files and directories from being pushed to the remote repository
@@ -97,7 +97,7 @@ pip install requirements.txt
 
 ## 4. Running your script
 
-To run your script in your local environment, run the command below on your terminal starting with the web-scraping-main.py, then image_downloader.py and finally app.py:
+To run your script in your local environment, run the command below on your terminal starting with the web-scraping-main.py, then image_downloader.py, app.py and finally extractor.py (to get embeddings):
 
 ```bash
 python (name_of_file).py
