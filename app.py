@@ -4,9 +4,9 @@ import numpy as np
 
 '''
 - Takes an input the image name and the desired output image size
-- Loads the HAAR model to perform face detection task (the output size needs to be (160*160) pixels for the FaceNet model to work correctly
+- Loads the HAAR model to perform face detection task (the output size needs to be (224*224) pixels for the FaceNet model to work correctly
 '''
-def extract_face(image_path, required_size=(160, 160)):
+def extract_face(image_path, required_size=(224, 224)):
     # Load the HAAR Cascade for face detection
     haar_model_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     face_cascade = cv2.CascadeClassifier(haar_model_path)
@@ -41,7 +41,7 @@ def extract_face(image_path, required_size=(160, 160)):
 - Takes a directory name as input to loop through its images
 - Applies the ‘ extract face’ function. 
 '''
-def load_faces(dir_name, required_size=(160, 160)):
+def load_faces(dir_name, required_size=(224, 224)):
     faces = []
     for filename in os.listdir(dir_name):
         image_path = os.path.join(dir_name, filename)
@@ -54,7 +54,7 @@ def load_faces(dir_name, required_size=(160, 160)):
 - Takes the parent directory name and loops through its child directory to apply the load faces function
 - Assign to them the corresponding label which is the child directory name.
 '''
-def load_dataset(parent_dir_name, required_size=(160, 160)):
+def load_dataset(parent_dir_name, required_size=(224, 224)):
     X, y = [], []
     for subdir in os.listdir(parent_dir_name):
         subdir_path = os.path.join(parent_dir_name, subdir)

@@ -12,7 +12,7 @@ Returns:
 # Load pre-trained VGG16 model without the top classification layer
 def load_vgg16_embedding_model():
     # Load the VGG16 model pre-trained on ImageNet, exclude the top classification layers
-    base_model = VGG16(weights='imagenet', include_top=False, input_shape=(160, 160, 3))
+    base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
     
     # Add a custom output layer for embeddings
     x = base_model.output
