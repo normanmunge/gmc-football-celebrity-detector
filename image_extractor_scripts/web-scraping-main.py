@@ -24,7 +24,6 @@ def search_google(search_query):
                 "Image Link":[]
                }
     
-    #search_url = f"https://www.google.com/search?site=&tbm=isch&source=hp&biw=1873&bih=990&q={search_query}"
     search_url = f"https://www.google.com/search?q=40+face+potrait+pictures+of+{search_query}&sca_esv=332c1457e26e21ac&rlz=1C5CHFA_enKE1073KE1073&udm=2&biw=1440&bih=812&ei=D2VAZ-vYKaGZi-gPifrQoAE&ved=0ahUKEwirnMqw5e-JAxWhzAIHHQk9FBQQ4dUDCBA&uact=5&oq=200+face+potrait+pictures+of+steven+gerrard&gs_lp=EgNpbWciKzIwMCBmYWNlIHBvdHJhaXQgcGljdHVyZXMgb2Ygc3RldmVuIGdlcnJhcmRI7yBQqQhYrhtwAXgAkAEAmAGOBKAByxCqAQcyLTcuNS0xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAfoAg&sclient=img"
     browser = webdriver.Chrome()
 
@@ -97,7 +96,7 @@ def search_google(search_query):
     
             df = pd.DataFrame(data=data_dic)
 
-            df.to_excel(f'excel_links/{converted_name}_links.xlsx', index=False)
+            df.to_excel(f'../excel_links/{converted_name}_links.xlsx', index=False)
             
             print(f"Downloaded {count} images of {search_query}")
     

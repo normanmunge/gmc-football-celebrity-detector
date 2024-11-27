@@ -7,7 +7,7 @@ def download_images(url,count,query):
     try:
     
         img_data = requests.get(url).content
-        with open(f'dataset/images/{query}/{query}_{count}.jpg', 'wb') as handler:
+        with open(f'../dataset/images/{query}/{query}_{count}.jpg', 'wb') as handler:
             handler.write(img_data)
     
     
@@ -22,7 +22,7 @@ def download_images(url,count,query):
 import os
 
 # Specify the path where you want to create the folders
-path = "dataset/images/"
+path = "../dataset/images/"
 
 keywords = ["Steven Gerrard","Mo Salah","Christiano Ronaldo","Messi","Wayne Rooney"]
 
@@ -46,7 +46,7 @@ query_list = [name.lower().replace(" ", "_") for name in keywords]
 for query in query_list:
 
     
-    url_data = pd.read_excel(f'excel_links/{query}_links.xlsx')
+    url_data = pd.read_excel(f'../excel_links/{query}_links.xlsx')
 
     #create a list of the urls
 
