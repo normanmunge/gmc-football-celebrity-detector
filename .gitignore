@@ -2,3 +2,4 @@ __pycache__
 .DS_Store
 .ipynb_checkpoints
 image_classification_model/.ipynb_checkpoints
+image_face_detection/__pycache__
