@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from PIL import Image
 import joblib
+import time
 from image_face_detection.extractor import get_embedding_vgg16, load_vgg16_embedding_model
 
 # Load the trained SVM model and the label encoder
@@ -55,7 +56,8 @@ if uploaded_file is not None:
                 st.image(image, caption="Uploaded Image", use_container_width=True)    
 
             # Extract face
-            st.write("Processing...")
+            with st.spinner("Processing..."):
+                time.sleep(10)
             extracted_face = extract_face(np.array(image))
 
             if extracted_face is not None:
