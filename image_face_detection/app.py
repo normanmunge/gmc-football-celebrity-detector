@@ -8,7 +8,7 @@ import numpy as np
 '''
 def extract_face(image_path, required_size=(224, 224)):
     # Load the HAAR Cascade for face detection
-    haar_model_path = cv2.data.haarcascades + "../haarcascade_frontalface_default.xml"
+    haar_model_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
     face_cascade = cv2.CascadeClassifier(haar_model_path)
     
     # Load the image
@@ -54,18 +54,20 @@ def load_faces(dir_name, required_size=(224, 224)):
 - Takes the parent directory name and loops through its child directory to apply the load faces function
 - Assign to them the corresponding label which is the child directory name.
 '''
-def load_dataset(parent_dir_name, required_size=(224, 224)):
+def load_dataset(parent_dir_path, parent_dir_name, required_size=(224, 224),):
     X, y = [], []
-    for subdir in os.listdir(parent_dir_name):
-        subdir_path = os.path.join(parent_dir_name, subdir)
+    for subdir in os.listdir(parent_dir_path):
+        subdir_path = os.path.join(parent_dir_path, subdir)
         if not os.path.isdir(subdir_path):
             continue
-        # Load all faces in the subdirectory
-        faces = load_faces(subdir_path, required_size)
-        # Assign the label (subdirectory name) to each face
-        labels = [subdir] * len(faces)
-        X.extend(faces)
-        y.extend(labels)
+        
+        if subdir == 'train':
+            # Load all faces in the subdirectory
+            faces = load_faces(subdir_path, required_size)
+            # Assign the label (subdirectory name) to each face
+            labels = [parent_dir_name] * len(faces)
+            X.extend(faces)
+            y.extend(labels)
     return np.array(X), np.array(y)
 
 '''
@@ -86,18 +88,17 @@ def main():
 
     # Iterate over the list of folder names and create them
     for folder in folders:
-        parent_dir = os.path.join("dataset/images", folder)
-        X, y = load_dataset(parent_dir)
+        parent_dir_path = os.path.join(f"dataset/images", folder)
+        X, y = load_dataset(parent_dir_path, folder)
         print(f"Loaded {len(X)} faces with labels: {set(y)}")
         combined_X.extend(X)
         combined_y.extend(y)
-    
     # Convert to numpy arrays
     combined_X = np.array(combined_X)
     combined_y = np.array(combined_y)
 
     if len(combined_X) > 0 and len(combined_y) > 0:
-        output_file = "../faces_dataset.npz"
+        output_file = os.path.join("faces_dataset.npz")
         save_dataset(combined_X, combined_y, output_file)
 
 
