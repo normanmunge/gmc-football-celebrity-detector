@@ -3,6 +3,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.applications.vgg16 import preprocess_input
 from tensorflow.keras.layers import Flatten
 import numpy as np
+import os
 
 """
 Load the pre-trained VGG16 model and modify it to output embeddings.
@@ -67,9 +68,9 @@ if __name__ == "__main__":
     vgg16_model = load_vgg16_embedding_model()
     
     # Load dataset
-    data = np.load("../faces_dataset.npz")
+    data = np.load(os.path.join("faces_dataset.npz"))
     face_images, labels = data['X'], data['y']
     
     # Process and save embeddings
-    output_embedding_file = "../vgg16_face_embeddings.npz"
+    output_embedding_file = os.path.join("vgg16_face_embeddings.npz")
     process_and_save_embeddings(vgg16_model, face_images, labels, output_embedding_file)
