@@ -2,25 +2,12 @@ import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
-# from tensorflow.keras.applications.vgg16 import preprocess_input
-# from tensorflow.keras.models import Model
-# from tensorflow.keras.applications import VGG16
-# from tensorflow.keras.layers import Flatten
-#from sklearn.preprocessing import LabelEncoder
 import joblib
 from image_face_detection.extractor import get_embedding_vgg16, load_vgg16_embedding_model
 
 # Load the trained SVM model and the label encoder
 svm_model = joblib.load("models/svm_face_classifier.joblib")
 label_encoder = joblib.load("models/encoder.joblib")
-
-# Load VGG16 embedding model
-# def load_vgg16_embedding_model():
-#     base_model = VGG16(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
-#     x = base_model.output
-#     x = Flatten()(x)  # Flatten the output into a vector
-#     embedding_model = Model(inputs=base_model.input, outputs=x)
-#     return embedding_model
 
 embedding_model = load_vgg16_embedding_model()
 
@@ -35,17 +22,6 @@ def extract_face(image):
     face = image[y:y+h, x:x+w]
     face = cv2.resize(face, (224, 224))
     return face
- 
-# Function to extract face from an image
-
-
-# Function to get embeddings
-# def get_embedding(face):
-#     face = face.astype('float32')
-#     face = preprocess_input(face)
-#     face = np.expand_dims(face, axis=0)
-#     embedding = embedding_model.predict(face)
-#     return embedding[0]
 
 # Streamlit App
 st.title("Face Recognition App")
