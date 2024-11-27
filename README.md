@@ -169,3 +169,9 @@ To run any of the python scripts in your local environment, run the command belo
 ```bash
 python (path_to_file).py
 ```
+
+## 5. Viewing in Streamlit
+
+The celebrity detection app has been deployed using Streamlit. You can access it using the URL below:
+
+[Web App](https://football-celebrity-detector.streamlit.app/)
