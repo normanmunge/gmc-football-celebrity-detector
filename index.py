@@ -2,11 +2,11 @@ import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
-from tensorflow.keras.applications.vgg16 import preprocess_input
-from tensorflow.keras.models import Model
-from tensorflow.keras.applications import VGG16
-from tensorflow.keras.layers import Flatten
-from sklearn.preprocessing import LabelEncoder
+# from tensorflow.keras.applications.vgg16 import preprocess_input
+# from tensorflow.keras.models import Model
+# from tensorflow.keras.applications import VGG16
+# from tensorflow.keras.layers import Flatten
+#from sklearn.preprocessing import LabelEncoder
 import joblib
 from image_face_detection.extractor import get_embedding_vgg16, load_vgg16_embedding_model
 
@@ -55,17 +55,17 @@ uploaded_file = st.sidebar.file_uploader("Upload an image", type=['jpg', 'png', 
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     # Extract face
     st.write("Processing...")
     extracted_face = extract_face(np.array(image))
 
     if extracted_face is not None:
-        st.image(extracted_face, caption="Detected Face", use_column_width=True)
+        st.image(extracted_face, caption="Detected Face", use_container_width=True)
         
         # Get embedding
-        embedding = get_embedding_vgg16(extracted_face)
+        embedding = get_embedding_vgg16(embedding_model, extracted_face)
 
         # Predict using SVM
         prediction = svm_model.predict([embedding])
